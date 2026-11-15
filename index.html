@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drive Size Pro — Google Drive ストレージ分析 Chrome 拡張機能</title>
+    <meta name="description" content="Google Drive のフォルダサイズを一目で把握。ドーナツチャート、ツリーマップ、ヒートマップ、共有管理、CSV エクスポートなど、Drive の容量管理に必要な全てを提供する Chrome 拡張機能。">
+    <meta name="keywords" content="Google Drive, フォルダサイズ, Chrome拡張機能, ストレージ分析, 容量管理, Drive Size Pro">
+    <meta property="og:title" content="Drive Size Pro — Google Drive ストレージ分析">
+    <meta property="og:description" content="Google Drive のどのフォルダが容量を食っているか一目で分かる Chrome 拡張機能">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon32.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="icon48.png" alt="Drive Size Pro" class="nav-icon">
+                <span>Drive Size Pro</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">機能</a>
+                <a href="#screenshots">スクリーンショット</a>
+                <a href="#how-it-works">使い方</a>
+                <a href="#data-safety">データ安全性</a>
+                <a href="#faq">FAQ</a>
+                <a href="privacy.html">プライバシーポリシー (Privacy)</a>
+                <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="nav-cta">無料で追加</a>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="#features">機能</a>
+            <a href="#screenshots">スクリーンショット</a>
+            <a href="#how-it-works">使い方</a>
+            <a href="#data-safety">データ安全性</a>
+            <a href="#faq">FAQ</a>
+            <a href="privacy.html">プライバシーポリシー (Privacy)</a>
+            <a href="terms.html">利用規約 (Terms)</a>
+            <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="nav-cta">無料で追加</a>
+        </div>
+    </nav>
+
+    <!-- ヒーローセクション -->
+    <section id="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    Chrome Web Store で公開中
+                </div>
+                <h1>
+                    Google Drive の<br>
+                    <span class="gradient-text">容量の謎を</span><br>
+                    一瞬で解き明かす
+                </h1>
+                <p class="hero-subtitle">
+                    どのフォルダが何GBを使っているか、Google Drive上で直接可視化。<br>
+                    ドーナツチャート、ツリーマップ、ヒートマップで一目瞭然。
+                </p>
+                <div class="hero-actions">
+                    <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="btn-primary" id="hero-cta">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+                        Chrome に無料で追加
+                    </a>
+                    <a href="#features" class="btn-secondary">
+                        機能を見る
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17l9.2-9.2M17 17V7.8H7.8"/></svg>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label">無料</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="6">0</span>
+                        <span class="stat-label">分析ビュー</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="2">0</span>
+                        <span class="stat-label">対応言語</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-screenshot-wrapper">
+                    <div class="screenshot-glow"></div>
+                    <img src="store_screenshot_1.png" alt="Drive Size Pro のドーナツチャート分析画面" class="hero-screenshot" loading="eager">
+                    <div class="floating-card card-1">
+                        <span class="card-icon">📊</span>
+                        <div>
+                            <span class="card-title">288.73 GB</span>
+                            <span class="card-desc">マイドライブ合計</span>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <span class="card-icon">⚡</span>
+                        <div>
+                            <span class="card-title">80.0秒で完了</span>
+                            <span class="card-desc">高速スキャン</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- 課題提起セクション -->
+    <section id="problem" class="section">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-text">
+                    <span class="section-tag">🤔 こんな悩みありませんか？</span>
+                    <h2>Google Drive の容量、<br><span class="gradient-text">どこに消えた？</span></h2>
+                    <p>Google Drive は容量の「合計」は教えてくれますが、<strong>どのフォルダが原因か</strong>は教えてくれません。</p>
+                </div>
+                <div class="problem-cards">
+                    <div class="problem-card" data-delay="0">
+                        <div class="problem-icon">😰</div>
+                        <h3>容量がいっぱい</h3>
+                        <p>15GBの無料枠がすぐに埋まるけど、何が原因か分からない</p>
+                    </div>
+                    <div class="problem-card" data-delay="100">
+                        <div class="problem-icon">🔍</div>
+                        <h3>フォルダサイズが見えない</h3>
+                        <p>Google Drive はフォルダのサイズを表示してくれない</p>
+                    </div>
+                    <div class="problem-card" data-delay="200">
+                        <div class="problem-icon">🗂️</div>
+                        <h3>整理ができない</h3>
+                        <p>どこから手をつけていいか分からず、結局放置してしまう</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 機能セクション -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">✨ 機能紹介</span>
+                <h2>Drive Size Pro で<br><span class="gradient-text">全てが見える</span></h2>
+                <p class="section-desc">6つの強力な分析ビューで、ストレージの使用状況を完全に把握</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card feature-card-large">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">🍩</div>
+                    </div>
+                    <h3>ドーナツチャート</h3>
+                    <p>フォルダごとの容量内訳をカラフルなドーナツチャートで直感的に把握。カテゴリ別（動画・写真・書類など）の割合が一目で分かります。</p>
+                    <div class="feature-tag">人気No.1</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">🗺️</div>
+                    </div>
+                    <h3>ツリーマップ</h3>
+                    <p>フォルダ階層をサイズに比例した面積で表示。大容量フォルダが視覚的に際立ちます。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">🔥</div>
+                    </div>
+                    <h3>ヒートマップ</h3>
+                    <p>容量の大きいフォルダを赤、小さいものを青で色分け。問題箇所を瞬時に特定。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">📋</div>
+                    </div>
+                    <h3>リスト表示</h3>
+                    <p>サイズ順にソートされたフォルダ一覧。検索・フィルタ機能で素早く絞り込み。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">🔗</div>
+                    </div>
+                    <h3>共有管理</h3>
+                    <p>誰と何を共有しているか一覧で確認。共有状態のサマリーで、セキュリティも安心。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">📥</div>
+                    </div>
+                    <h3>CSVエクスポート</h3>
+                    <p>分析結果をCSVでダウンロード。Excel や Google スプレッドシートでさらに分析。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon-wrap">
+                        <div class="feature-icon">📈</div>
+                    </div>
+                    <h3>トレンド分析</h3>
+                    <p>前回スキャンとの差分を↑↓矢印で表示。容量の増減傾向を把握して先手を打てます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スクリーンショット セクション -->
+    <section id="screenshots" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">📸 スクリーンショット</span>
+                <h2>実際の<span class="gradient-text">画面をチェック</span></h2>
+                <p class="section-desc">Google Drive 上にシームレスに統合される分析パネル</p>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carousel-track">
+                    <div class="carousel-slide active">
+                        <img src="store_screenshot_1.png" alt="ドーナツチャート - 容量内訳" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">内訳タブ</span>
+                            <p>ドーナツチャートでカテゴリ別の容量内訳を可視化</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="store_screenshot_2.png" alt="リスト表示 - フォルダサイズ一覧" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">リストタブ</span>
+                            <p>サイズ順にフォルダを一覧表示。フィルタ・検索で絞り込み</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="store_screenshot_3.png" alt="ツリーマップ - 容量マップ" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">マップタブ</span>
+                            <p>ツリーマップで階層構造と容量を面積で直感的に把握</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="store_screenshot_4.png" alt="スキャン進捗" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">スキャンタブ</span>
+                            <p>リアルタイムのスキャン進捗とタスク管理</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="store_screenshot_5.png" alt="共有管理" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">共有タブ</span>
+                            <p>ファイルの共有状態を一覧管理。セキュリティの可視化</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="store_screenshot_6.png" alt="設定画面" loading="lazy">
+                        <div class="slide-caption">
+                            <span class="caption-tag">設定タブ</span>
+                            <p>スキャン設定やパネル透明度など、細かいカスタマイズが可能</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="前へ">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                    </button>
+                    <div class="carousel-dots" id="carousel-dots"></div>
+                    <button class="carousel-btn carousel-next" id="carousel-next" aria-label="次へ">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 使い方セクション -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🚀 使い方</span>
+                <h2>たった<span class="gradient-text">3ステップ</span>で開始</h2>
+                <p class="section-desc">面倒な設定は一切不要。インストールしたらすぐ使えます</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                    <h3>拡張機能をインストール</h3>
+                    <p>Chrome Web Store から「追加」ボタンをクリックするだけ</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+                    </div>
+                    <h3>Google Drive を開く</h3>
+                    <p>drive.google.com にアクセスして Google アカウントで認証</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    </div>
+                    <h3>自動で分析開始！</h3>
+                    <p>フォルダサイズが即座に表示。分析パネルで詳細を確認</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 比較セクション -->
+    <section id="comparison" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">⚡ 比較</span>
+                <h2>なぜ<span class="gradient-text"> Drive Size Pro</span> なのか？</h2>
+            </div>
+            <div class="comparison-table-wrap">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>機能</th>
+                            <th>Google Drive 標準</th>
+                            <th class="highlight-col">Drive Size Pro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>フォルダサイズ表示</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>容量内訳チャート</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>ツリーマップ</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>共有ファイル管理</td>
+                            <td><span class="check-partial">△</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>CSVエクスポート</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>トレンド分析</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>ヒートマップ表示</td>
+                            <td><span class="check-no">✕</span></td>
+                            <td class="highlight-col"><span class="check-yes">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td>料金</td>
+                            <td>—</td>
+                            <td class="highlight-col"><strong class="free-tag">完全無料</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- データ安全性・Google API 利用概要 (OAuth 審査対応セクション) -->
+    <section id="data-safety" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">🔒 Privacy &amp; Data Safety</span>
+                <h2>安心の<span class="gradient-text">ローカル完結設計</span><br>（100% Client-Side）</h2>
+                <p class="section-desc">Drive Size Pro は外部サーバーを一切持たず、すべての処理をユーザーのブラウザ内だけで完結します。</p>
+            </div>
+            <div class="data-safety-grid">
+                <div class="data-safety-card">
+                    <h3>🛡️ 読み取り専用の最小権限</h3>
+                    <p>要求するのは <code>drive.metadata.readonly</code>（ファイル名・サイズ等のメタデータのみ）と <code>drive.appdata</code>（ユーザー自身のドライブ内非表示キャッシュ領域）のみ。ファイル本文や中身には一切アクセスしません。</p>
+                    <p class="en-sub">Only read-only metadata (<code>drive.metadata.readonly</code>) and your private <code>appDataFolder</code> cache (<code>drive.appdata</code>) are accessed. File contents are never read or downloaded.</p>
+                </div>
+                <div class="data-safety-card">
+                    <h3>🚫 外部サーバーへの送信ゼロ</h3>
+                    <p>取得したフォルダ構成や容量データはブラウザ内のローカルストレージにのみ保持され、開発者サーバーや第三者へ送信・共有・販売されることは一切ありません。</p>
+                    <p class="en-sub">All processing runs 100% client-side in your browser. Zero data is transmitted to external developer servers, third parties, advertisers, or AI models.</p>
+                </div>
+                <div class="data-safety-card">
+                    <h3>📜 Google API ポリシー完全準拠</h3>
+                    <p>Google API Services User Data Policy（Limited Use 要件）を厳守しています。設定画面または Google アカウント設定からいつでもキャッシュ削除・連携解除が可能です。</p>
+                    <p class="en-sub">Use of Google APIs strictly adheres to the Google API Services User Data Policy, including the Limited Use requirements.</p>
+                </div>
+            </div>
+            <div class="data-safety-actions">
+                <a href="privacy.html" class="btn-primary">プライバシーポリシーを読む (Privacy Policy)</a>
+                <a href="terms.html" class="btn-secondary">利用規約 (Terms of Service)</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ セクション -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">❓ FAQ</span>
+                <h2>よくある<span class="gradient-text">質問</span></h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>本当に無料ですか？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、完全無料です。広告もサブスクリプションもありません。全ての機能を制限なく利用できます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>データのプライバシーは大丈夫？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Drive Size Pro は <strong>読み取り専用</strong>のアクセス権限のみを使用します。ファイルの内容にはアクセスせず、メタデータ（ファイル名・サイズ）のみを取得します。データは全てローカルに保存され、外部サーバーには一切送信しません。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご確認ください。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>スキャンにどのくらい時間がかかりますか？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>フォルダ数やファイル数によりますが、数百ファイルなら数秒、数万ファイルでも1〜2分程度で完了します。スキャン中もリアルタイムで進捗を確認できます。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Google Workspace（企業アカウント）でも使えますか？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい、個人の Google アカウントと Google Workspace アカウントの両方に対応しています。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>対応言語は？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>現在、日本語と英語に対応しています。ブラウザの言語設定に合わせて自動的に切り替わります。</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Edge や Brave でも使えますか？</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>はい！Google Chrome に加え、Microsoft Edge、Brave、Arc、Vivaldi などの Chromium ベースブラウザに対応しています。（Firefox のアドオンには対応していません）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA セクション -->
+    <section id="cta" class="section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-bg-effects">
+                    <div class="cta-orb cta-orb-1"></div>
+                    <div class="cta-orb cta-orb-2"></div>
+                </div>
+                <div class="cta-content">
+                    <h2>今すぐ Google Drive を<br><span class="gradient-text">スッキリさせよう</span></h2>
+                    <p>無料・広告なし・プライバシー安全。<br>インストールは10秒で完了します。</p>
+                    <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="btn-primary btn-large" id="cta-button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+                        Chrome Web Store で入手
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="icon48.png" alt="Drive Size Pro" class="footer-icon">
+                    <span>Drive Size Pro</span>
+                </div>
+                <p class="footer-copy">&copy; 2026 Drive Size Pro. All rights reserved. Contact: <a href="mailto:foodos571@gmail.com">foodos571@gmail.com</a></p>
+                <div class="footer-links">
+                    <a href="#features">機能</a>
+                    <a href="#screenshots">スクリーンショット</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="privacy.html">プライバシーポリシー (Privacy Policy)</a>
+                    <a href="terms.html">利用規約 (Terms of Service)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

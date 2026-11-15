@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー (Privacy Policy) — Drive Size Pro</title>
+    <meta name="description" content="Chrome 拡張機能 Drive Size Pro のプライバシーポリシーおよび Google API ユーザーデータの取り扱い（Limited Use 準拠）について。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+JP:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="icon32.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ナビゲーション -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="icon48.png" alt="Drive Size Pro" class="nav-icon">
+                <span>Drive Size Pro</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">ホーム (Home)</a>
+                <a href="privacy.html">プライバシーポリシー (Privacy Policy)</a>
+                <a href="terms.html">利用規約 (Terms)</a>
+                <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="nav-cta">Chrome Web Store</a>
+            </div>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="メニュー">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div id="mobile-nav" class="mobile-nav">
+            <a href="index.html">ホーム (Home)</a>
+            <a href="privacy.html">プライバシーポリシー (Privacy Policy)</a>
+            <a href="terms.html">利用規約 (Terms)</a>
+            <a href="https://chromewebstore.google.com/detail/hoicecmnedhbmppcciljddgcfgcpcboc" target="_blank" class="nav-cta">Chrome Web Store</a>
+        </div>
+    </nav>
+
+    <!-- プライバシーポリシー本文 -->
+    <main class="legal-page">
+        <div class="container">
+            <article class="legal-card">
+                <header class="legal-header">
+                    <span class="legal-badge">Google API Services User Data Policy 準拠</span>
+                    <h1>プライバシーポリシー / Privacy Policy</h1>
+                    <p class="legal-meta">
+                        対象アプリ（Application）: <strong>Drive Size Pro</strong>（Extension ID: <code>hoicecmnedhbmppcciljddgcfgcpcboc</code>）<br>
+                        最終更新日（Last Updated）: 2026年11月15日 / November 15, 2026
+                    </p>
+                </header>
+
+                <section class="legal-section">
+                    <h2>はじめに / Introduction</h2>
+                    <p>
+                        <strong>Drive Size Pro</strong>（以下「本拡張機能」）は、ユーザーの Google Drive 上でフォルダやファイルの容量を直接計算・可視化する無料のブラウザ拡張機能です。本拡張機能はユーザーのプライバシー保護を最優先に設計されており、<strong>すべてのデータ解析処理をユーザーのブラウザ内（100% クライアントサイド）で完結</strong>させます。
+                    </p>
+                    <div class="legal-en">
+                        <strong>English Summary:</strong> Drive Size Pro is a free browser extension that calculates and visualizes folder sizes directly inside Google Drive. It operates 100% client-side within your browser and never transmits, stores, or sells your Google Drive data to any external developer server or third party.
+                    </div>
+                </section>
+
+                <section class="legal-section">
+                    <h2>1. アクセスする Google ユーザーデータ / Google User Data Accessed</h2>
+                    <p>
+                        本拡張機能は、Google Drive の容量分析機能を提供するために必要な最小限の権限（OAuth 2.0 スコープ）のみを要求します。ファイルの中身（文書本文、画像、動画データ等のコンテンツ自体）をダウンロードしたり閲覧したりすることは一切ありません。
+                    </p>
+                    <table class="scope-table">
+                        <thead>
+                            <tr>
+                                <th>OAuth 2.0 スコープ / Scope</th>
+                                <th>アクセス内容と利用目的 / Purpose &amp; Data Accessed</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="scope-code">https://www.googleapis.com/auth/drive.metadata.readonly</span></td>
+                                <td>
+                                    Google Drive 内のフォルダ・ファイルの<strong>メタデータ（名前、ファイルサイズ、MIMEタイプ、更新日時、親フォルダID、共有権限情報）のみを読み取り専用で取得</strong>します。ファイルの変更・削除・作成およびファイル本文の取得は一切行いません。<br>
+                                    <em>(Read-only access strictly to file/folder metadata—name, size, MIME type, modified date, parent IDs, and sharing permissions—to calculate folder sizes, detect duplicates, and visualize storage usage. File contents are never accessed or downloaded.)</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="scope-code">https://www.googleapis.com/auth/drive.appdata</span></td>
+                                <td>
+                                    ユーザーが任意に「クラウド保存」機能を使用した場合や解析結果を高速復元するために、<strong>ユーザー自身の Google Drive 内のアプリ専用非表示フォルダ（<code>appDataFolder</code>）に解析キャッシュファイル（<code>drivesize_cache.json</code>）のみを保存・取得</strong>します。<br>
+                                    <em>(Stores and restores your local scan cache JSON strictly inside your own private Google Drive App Data folder so you do not need to re-scan large drives across sessions.)</em>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section class="legal-section">
+                    <h2>2. データの利用目的 / How We Use Google User Data</h2>
+                    <ul>
+                        <li>Google Drive の画面上に各フォルダ・ファイルの合計容量や更新状況を表示するため</li>
+                        <li>カテゴリ別（動画・画像・書類など）のドーナツチャート、ツリーマップ、ヒートマップ、大容量ファイルのランキングを表示するため</li>
+                        <li>ユーザー自身のブラウザ画面上で重複ファイル候補や共有設定の一覧を可視化し、ユーザー自身の操作により CSV ファイルとしてローカル端末へ書き出すため</li>
+                    </ul>
+                    <div class="legal-en">
+                        <strong>English:</strong> Retrieved metadata is strictly used inside your browser session solely to display folder sizes, category breakdown charts, treemaps, duplicate file lists, sharing status summaries, and user-initiated local CSV exports.
+                    </div>
+                </section>
+
+                <section class="legal-section">
+                    <h2>3. データの保存・セキュリティ・第三者提供の禁止 / Data Storage, Protection &amp; Sharing</h2>
+                    <ul>
+                        <li><strong>ローカル完結処理（100% Client-Side）:</strong> API から取得したメタデータおよび計算キャッシュは、ユーザー端末のブラウザ内ストレージ（<code>chrome.storage.local</code> / <code>chrome.storage.session</code>）およびユーザー自身の <code>appDataFolder</code> にのみ保存されます。</li>
+                        <li><strong>外部サーバー送信なし（No External Servers）:</strong> 開発者が管理する外部サーバーへの送信・蓄積、解析用トラッキング、Cookie 収集は一切行っていません。</li>
+                        <li><strong>第三者提供・広告・AI学習利用の禁止:</strong> ユーザーの Google データを第三者へ共有、販売、貸与すること、および広告配信、与信判断、汎用的な AI/ML モデルの学習に利用することは一切ありません。</li>
+                        <li><strong>通信の暗号化と最小権限:</strong> Google Drive API との通信はすべて HTTPS（TLS）で暗号化され、アクセストークンは読み取り専用およびアプリ専用領域に限定して利用されます。</li>
+                    </ul>
+                    <div class="legal-en">
+                        <strong>English:</strong> All data processing takes place locally in your browser. Cached results are stored exclusively in browser local/session storage and your own Google Drive <code>appDataFolder</code>. No developer backend servers exist, and no Google user data is ever transferred to third parties, sold, used for advertising, or used to train AI/ML models.
+                    </div>
+                </section>
+
+                <section class="legal-section">
+                    <h2>4. Google API Services User Data Policy への準拠 / Limited Use Compliance</h2>
+                    <div class="limited-use-box">
+                        <strong>Limited Use Requirements Compliance Declaration</strong>
+                        <p style="margin-bottom:8px;">
+                            Drive Size Pro's use and transfer to any other app of information received from Google APIs will adhere to the
+                            <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>,
+                            including the Limited Use requirements.
+                        </p>
+                        <p style="margin-bottom:0;">
+                            本拡張機能による Google API から取得した情報の使用および他のアプリへの転送は、限定的使用（Limited Use）要件を含め、<strong>Google API Services User Data Policy</strong> に完全に準拠します。
+                        </p>
+                    </div>
+                </section>
+
+                <section class="legal-section">
+                    <h2>5. データの削除と権限の取り消し / Data Retention, Deletion &amp; Revoking Access</h2>
+                    <ul>
+                        <li><strong>キャッシュの即時削除:</strong> 拡張機能のポップアップまたは分析パネル内「設定」タブにある「キャッシュクリア・再計算」ボタンを押すことで、ブラウザ内および <code>appDataFolder</code> 上の解析キャッシュをいつでも完全に削除できます。</li>
+                        <li><strong>拡張機能のアンインストール:</strong> 拡張機能をブラウザから削除すると、ローカルストレージに保存されていたすべての設定とキャッシュは自動的に消去されます。</li>
+                        <li><strong>Google アカウント連携の解除:</strong> ユーザーはいつでも <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google アカウントの権限設定（myaccount.google.com/permissions）</a> から「Drive Size Pro」のアクセス権限を取り消すことができます。</li>
+                    </ul>
+                    <div class="legal-en">
+                        <strong>English:</strong> You can delete all cached data at any time using the "Clear Cache" button in the extension or by uninstalling the extension. You can revoke Google Drive API access at any time from your <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener noreferrer">Google Account Permissions</a> page.
+                    </div>
+                </section>
+
+                <section class="legal-section" style="margin-bottom:0;">
+                    <h2>6. お問い合わせ先 / Contact Us</h2>
+                    <p>
+                        本プライバシーポリシーやデータの取り扱いに関するご質問は、以下の開発者連絡先メールアドレスまでお問い合わせください。<br>
+                        For any questions regarding this Privacy Policy or data handling, please contact the developer at:
+                    </p>
+                    <p style="margin-bottom:0;">
+                        <strong>開発者 / Developer:</strong> Drive Size Pro Developer<br>
+                        <strong>メールアドレス / Email:</strong> <a href="mailto:foodos571@gmail.com">foodos571@gmail.com</a>
+                    </p>
+                </section>
+            </article>
+        </div>
+    </main>
+
+    <!-- フッター -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="icon48.png" alt="Drive Size Pro" class="footer-icon">
+                    <span>Drive Size Pro</span>
+                </div>
+                <p class="footer-copy">&copy; 2026 Drive Size Pro. All rights reserved. Contact: foodos571@gmail.com</p>
+                <div class="footer-links">
+                    <a href="index.html">ホーム (Home)</a>
+                    <a href="privacy.html">プライバシーポリシー (Privacy Policy)</a>
+                    <a href="terms.html">利用規約 (Terms of Service)</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
